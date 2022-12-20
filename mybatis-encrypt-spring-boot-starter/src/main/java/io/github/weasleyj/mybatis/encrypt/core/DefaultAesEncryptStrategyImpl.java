@@ -61,7 +61,7 @@ public class DefaultAesEncryptStrategyImpl implements EncryptStrategy {
             }
             return encoded;
         } catch (Exception e) {
-            throw new MybatisEncryptException("AEC encrypt exception:", e);
+            throw new MybatisEncryptException("AES encrypt exception:", e);
         }
     }
 
@@ -81,7 +81,7 @@ public class DefaultAesEncryptStrategyImpl implements EncryptStrategy {
             }
             return decrypted;
         } catch (Exception e) {
-            throw new MybatisEncryptException("AEC decrypt exception:", e);
+            throw new MybatisEncryptException("AES decrypt exception:", e);
         }
     }
 }
