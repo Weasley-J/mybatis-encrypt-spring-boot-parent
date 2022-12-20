@@ -13,13 +13,44 @@
     <artifactId>mybatis-encrypt-spring-boot-starter</artifactId>
     <version>1.0.0</version>
     <name>mybatis-encrypt-spring-boot-starter</name>
-    <description>A spring-boot starter to encrypt and decrypt some column of database. Based on MyBatis framework.</description>
+    <description>A spring-boot starter make it easy to encrypt and decrypt some column of database tables, support for user custom encryption algorithms</description>
+    <url>https://github.com/Weasley-J/dtt-spring-boot-parent</url>
+
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
+            <url>https://github.com/Weasley-J/dtt-spring-boot-parent/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Weasley J</name>
+            <email>1432689025@qq.com</email>
+            <url>https://github.com/Weasley-J</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/Weasley-J/dtt-spring-boot-parent</url>
+        <connection>https://github.com/Weasley-J/dtt-spring-boot-parent.git</connection>
+        <developerConnection>https://github.com/Weasley-J/dtt-spring-boot-parent</developerConnection>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatis.version>3.5.11</mybatis.version>
+        <!-- deploy start -->
+        <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
+        <nexus-staging.version>1.6.13</nexus-staging.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-javadoc.version>3.4.1</maven-javadoc.version>
+        <maven-source.version>3.2.1</maven-source.version>
+        <maven-gpg.version>3.0.1</maven-gpg.version>
+        <!-- deploy end -->
     </properties>
 
     <dependencies>
@@ -65,18 +96,119 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
+        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging.version}</version>
+                <extensions>true</extensions>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc.version}</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <additionalJOptions>
+                        <additionalJOption>-Xdoclint:none</additionalJOption>
+                    </additionalJOptions>
+                    <tags>
+                        <tag>
+                            <name>date</name>
+                            <placement>o</placement>
+                            <head>Ignore 'date' tag rule</head>
+                        </tag>
+                        <tag>
+                            <name>apiNote</name>
+                            <placement>o</placement>
+                            <head>Ignore 'apiNote' tag rule</head>
+                        </tag>
+                        <tag>
+                            <name>implNote</name>
+                            <placement>o</placement>
+                            <head>Ignore 'implNote' tag rule</head>
+                        </tag>
+                    </tags>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadoc</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
