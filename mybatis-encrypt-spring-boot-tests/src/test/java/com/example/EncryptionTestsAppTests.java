@@ -8,6 +8,7 @@ import com.example.demain.DttMember;
 import com.example.service.MemberService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +48,7 @@ class EncryptionTestsAppTests {
         for (DttMember dttMember : list) {
             i += 1;
             id += 1;
+            dttMember.setOpenId(RandomStringUtils.randomAlphanumeric(16));
             dttMember.setMemberId(id + 1);
             dttMember.setNickname(dttMember.getNickname() + i);
             insertList.add(dttMember);
@@ -63,5 +65,34 @@ class EncryptionTestsAppTests {
                 .eq(DttMember::getOpenId, "fawezOE5sT")
         );
         System.out.println(JacksonUtil.toPrettyJson(members));
+    }
+
+    @Test
+    void testUpdateSingle() {
+        DttMember member = JacksonUtil.readValue("{\n" +
+                "      \"memberId\": 3,\n" +
+                "      \"openId\": \"fawezOE5sT\",\n" +
+                "      \"nickname\": \"蒋震南1001\",\n" +
+                "      \"isEnable\": true,\n" +
+                "      \"balance\": 865.0000,\n" +
+                "      \"birthday\": \"2022-12-20 01:58:00\",\n" +
+                "      \"status\": 0,\n" +
+                "      \"deleted\": 1,\n" +
+                "      \"registrarDate\": \"2022-12-20\",\n" +
+                "      \"accelerateBeginTime\": \"01:58:01\",\n" +
+                "      \"accelerateEndTime\": \"01:58:01\",\n" +
+                "      \"updateTime\": \"2022-12-20 01:58:00\"\n" +
+                "    }", DttMember.class);
+        member.setOpenId(RandomStringUtils.randomAlphanumeric(16));
+        boolean update = this.memberService.update(member, Wrappers.lambdaUpdate(DttMember.class)
+                .eq(DttMember::getMemberId, 3)
+        );
+        Assert.isTrue(update, "update must be success");
+
+        boolean update2 = this.memberService.update(null, Wrappers.lambdaUpdate(DttMember.class)
+                .eq(DttMember::getMemberId, 3)
+                .set(DttMember::getIsEnable, false)
+        );
+        Assert.isTrue(update2, "update must be success");
     }
 }

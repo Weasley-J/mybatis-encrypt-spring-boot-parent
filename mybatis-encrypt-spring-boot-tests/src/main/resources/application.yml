@@ -10,7 +10,7 @@ spring:
     name: mybatis-encrypt-spring-boot-tests
 
   profiles:
-    active: h2
+    active: oracle
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
