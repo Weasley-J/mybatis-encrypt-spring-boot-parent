@@ -1,6 +1,6 @@
 package io.github.weasleyj.mybatis.encrypt.annotation;
 
-import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptConfiguration;
+import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptConfigurer;
 import io.github.weasleyj.mybatis.encrypt.core.DefaultAesEncryptStrategyImpl;
 import io.github.weasleyj.mybatis.encrypt.core.DefaultBase64EncryptStrategyImpl;
 import io.github.weasleyj.mybatis.encrypt.interceptor.DefaultMybatisEncryptInterceptor;
@@ -23,6 +23,6 @@ import java.lang.annotation.Target;
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Import({MybatisEncryptConfiguration.class, DefaultMybatisEncryptInterceptor.class, DefaultAesEncryptStrategyImpl.class, DefaultBase64EncryptStrategyImpl.class,})
+@Import({MybatisEncryptConfigurer.class, DefaultMybatisEncryptInterceptor.class, DefaultAesEncryptStrategyImpl.class, DefaultBase64EncryptStrategyImpl.class,})
 public @interface EnableMybatisEncryption {
 }

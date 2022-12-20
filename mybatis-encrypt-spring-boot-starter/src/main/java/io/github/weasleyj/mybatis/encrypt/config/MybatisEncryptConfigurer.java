@@ -42,7 +42,7 @@ import static io.github.weasleyj.mybatis.encrypt.constant.EncryptType.DIY;
 @ConditionalOnBean(annotation = {EnableMybatisEncryption.class})
 @ConfigurationPropertiesScan(basePackages = {"io.github.weasleyj.mybatis.encrypt.config"})
 @EnableConfigurationProperties({MybatisEncryptProperties.class, AesProperties.class, DiyProperties.class})
-public class MybatisEncryptConfiguration implements InitializingBean {
+public class MybatisEncryptConfigurer implements InitializingBean {
     /**
      * The clients of encrypt strategies
      */
@@ -56,7 +56,7 @@ public class MybatisEncryptConfiguration implements InitializingBean {
     private final List<SqlSessionFactory> sqlSessionFactories;
     private final DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor;
 
-    public MybatisEncryptConfiguration(DiyProperties diyProperties, AesProperties aesProperties, List<SqlSessionFactory> sqlSessionFactories, DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor) {
+    public MybatisEncryptConfigurer(DiyProperties diyProperties, AesProperties aesProperties, List<SqlSessionFactory> sqlSessionFactories, DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor) {
         this.diyProperties = diyProperties;
         this.aesProperties = aesProperties;
         this.sqlSessionFactories = sqlSessionFactories;

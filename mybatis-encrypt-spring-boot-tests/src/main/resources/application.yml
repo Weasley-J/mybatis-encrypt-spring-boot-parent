@@ -31,8 +31,6 @@ mybatis:
     aes:
       key: Jidkdp1mWL1tRyK=
       key-iv: Poikdp1mWL1jijK=
-    diy:
-      encrypt-strategy:
 
 # PageHelper
 pagehelper:

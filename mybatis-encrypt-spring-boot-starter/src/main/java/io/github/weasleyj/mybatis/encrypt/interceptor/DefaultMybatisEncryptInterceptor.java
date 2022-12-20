@@ -2,7 +2,7 @@ package io.github.weasleyj.mybatis.encrypt.interceptor;
 
 import io.github.weasleyj.mybatis.encrypt.annotation.EnableMybatisEncryption;
 import io.github.weasleyj.mybatis.encrypt.annotation.Encryption;
-import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptConfiguration;
+import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptConfigurer;
 import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptProperties;
 import io.github.weasleyj.mybatis.encrypt.core.EncryptStrategy;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -143,7 +143,7 @@ public class DefaultMybatisEncryptInterceptor implements Interceptor {
      * @return The instance of {@link EncryptStrategy}
      */
     public EncryptStrategy deduceEncryptStrategy() {
-        return MybatisEncryptConfiguration.STRATEGIES_CLIENTS.get(mybatisEncryptProperties.getEncryptType());
+        return MybatisEncryptConfigurer.STRATEGIES_CLIENTS.get(mybatisEncryptProperties.getEncryptType());
     }
 
 }
