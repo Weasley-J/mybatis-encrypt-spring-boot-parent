@@ -23,7 +23,7 @@ spring:
       date: yyyy-MM-dd
       time: HH:mm:ss
 
-# mybatis加密配置
+# mybatis encryption configuration
 mybatis:
   encrypt:
     enable: on
@@ -34,7 +34,7 @@ mybatis:
     diy:
       encrypt-strategy:
 
-# PageHelper分页插件
+# PageHelper
 pagehelper:
   reasonable: true
   support-methods-arguments: true
