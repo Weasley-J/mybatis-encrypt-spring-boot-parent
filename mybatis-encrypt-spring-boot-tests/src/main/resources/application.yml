@@ -1,0 +1,42 @@
+logging:
+  level:
+    io.github.weasleyj.mybatis.encrypt.interceptor.DefaultMybatisEncryptInterceptor: debug
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mybatis-encrypt-spring-boot-tests
+
+  profiles:
+    active: h2
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    locale: zh_CN
+
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+
+# mybatis加密配置
+mybatis:
+  encrypt:
+    enable: on
+    encrypt-type: aes
+    aes:
+      secret-key: Jidkdp1mWL1tRyK=
+      key-iv: Poikdp1mWL1jijK=
+    encrypt-strategy:
+
+# PageHelper分页插件
+pagehelper:
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  auto-dialect: true
+  auto-runtime-dialect: true
