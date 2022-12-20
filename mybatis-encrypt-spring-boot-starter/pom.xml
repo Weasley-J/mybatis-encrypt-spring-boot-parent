@@ -14,12 +14,12 @@
     <version>1.0.0</version>
     <name>mybatis-encrypt-spring-boot-starter</name>
     <description>A spring-boot starter make it easy to encrypt and decrypt some column of database tables, support for user custom encryption algorithms</description>
-    <url>https://github.com/Weasley-J/dtt-spring-boot-parent</url>
+    <url>https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent</url>
 
     <licenses>
         <license>
             <name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
-            <url>https://github.com/Weasley-J/dtt-spring-boot-parent/blob/main/LICENSE</url>
+            <url>https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/main/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -33,9 +33,9 @@
     </developers>
 
     <scm>
-        <url>https://github.com/Weasley-J/dtt-spring-boot-parent</url>
-        <connection>https://github.com/Weasley-J/dtt-spring-boot-parent.git</connection>
-        <developerConnection>https://github.com/Weasley-J/dtt-spring-boot-parent</developerConnection>
+        <url>https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent</url>
+        <connection>https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent.git</connection>
+        <developerConnection>https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent</developerConnection>
     </scm>
 
     <properties>
