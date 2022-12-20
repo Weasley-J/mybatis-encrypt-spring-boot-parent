@@ -34,10 +34,6 @@ public class MybatisEncryptProperties {
      * @see EncryptType
      */
     private EncryptType encryptType = BASE64;
-    /**
-     * Developer-defined encryption and decryption policies
-     */
-    private Class<? extends EncryptStrategy> encryptStrategy = null;
 
     /**
      * The configuration properties of AES
@@ -72,4 +68,18 @@ public class MybatisEncryptProperties {
         }
     }
 
+    /**
+     * The configuration properties of user DIY encrypt strategy
+     */
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Accessors(chain = true)
+    @ConfigurationProperties(prefix = PREFIX + ".diy")
+    public static class DiyProperties {
+        /**
+         * Developer defines encryption and decryption policies
+         */
+        private Class<? extends EncryptStrategy> encryptStrategy = null;
+    }
 }

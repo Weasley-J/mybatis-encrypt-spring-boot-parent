@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptProperties.AesProperties;
+import static io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptProperties.DiyProperties;
 import static io.github.weasleyj.mybatis.encrypt.constant.EncryptType.AES;
 import static io.github.weasleyj.mybatis.encrypt.constant.EncryptType.BASE64;
 import static io.github.weasleyj.mybatis.encrypt.constant.EncryptType.DIY;
@@ -39,31 +40,29 @@ import static io.github.weasleyj.mybatis.encrypt.constant.EncryptType.DIY;
 @Lazy(value = false)
 @ConditionalOnClass({SqlSessionFactory.class})
 @ConditionalOnBean(annotation = {EnableMybatisEncryption.class})
-@EnableConfigurationProperties({MybatisEncryptProperties.class, AesProperties.class})
 @ConfigurationPropertiesScan(basePackages = {"io.github.weasleyj.mybatis.encrypt.config"})
+@EnableConfigurationProperties({MybatisEncryptProperties.class, AesProperties.class, DiyProperties.class})
 public class MybatisEncryptConfiguration implements InitializingBean {
     /**
      * The clients of encrypt strategies
      */
     public static final Map<EncryptType, EncryptStrategy> STRATEGIES_CLIENTS = new ConcurrentHashMap<>(6);
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final DiyProperties diyProperties;
     private final AesProperties aesProperties;
     /**
      * The list of 'SqlSessionFactory'
      */
     private final List<SqlSessionFactory> sqlSessionFactories;
-    private final MybatisEncryptProperties mybatisEncryptProperties;
     private final DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor;
 
-    public MybatisEncryptConfiguration(AesProperties aesProperties,
-                                       List<SqlSessionFactory> sqlSessionFactories,
-                                       MybatisEncryptProperties mybatisEncryptProperties,
-                                       DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor) {
+    public MybatisEncryptConfiguration(DiyProperties diyProperties, AesProperties aesProperties, List<SqlSessionFactory> sqlSessionFactories, DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor) {
+        this.diyProperties = diyProperties;
         this.aesProperties = aesProperties;
         this.sqlSessionFactories = sqlSessionFactories;
-        this.mybatisEncryptProperties = mybatisEncryptProperties;
         this.defaultMybatisEncryptInterceptor = defaultMybatisEncryptInterceptor;
     }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -73,8 +72,8 @@ public class MybatisEncryptConfiguration implements InitializingBean {
                 configuration.addInterceptor(defaultMybatisEncryptInterceptor);
             }
         });
-        if (null != mybatisEncryptProperties.getEncryptStrategy()) {
-            STRATEGIES_CLIENTS.put(DIY, ClassUtils.newInstance(mybatisEncryptProperties.getEncryptStrategy()));
+        if (null != diyProperties.getEncryptStrategy()) {
+            STRATEGIES_CLIENTS.put(DIY, ClassUtils.newInstance(diyProperties.getEncryptStrategy()));
         }
         STRATEGIES_CLIENTS.put(BASE64, new DefaultBase64EncryptStrategyImpl());
         STRATEGIES_CLIENTS.put(AES, new DefaultAesEncryptStrategyImpl(aesProperties));

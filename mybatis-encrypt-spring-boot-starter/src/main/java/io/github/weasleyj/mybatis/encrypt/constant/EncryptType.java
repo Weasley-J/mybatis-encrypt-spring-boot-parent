@@ -1,5 +1,6 @@
 package io.github.weasleyj.mybatis.encrypt.constant;
 
+import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,6 +15,8 @@ import lombok.Getter;
 public enum EncryptType implements EncryptConstant {
     /**
      * Use AES for encryption and decryption
+     *
+     * @see MybatisEncryptProperties.AesProperties
      */
     AES,
     /**
@@ -22,6 +25,8 @@ public enum EncryptType implements EncryptConstant {
     BASE64,
     /**
      * User defined encrypt strategy
+     *
+     * @see MybatisEncryptProperties.DiyProperties
      */
     DIY
 }
