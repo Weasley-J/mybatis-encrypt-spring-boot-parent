@@ -150,7 +150,7 @@ public class SomeApplication {
 
 ## 3 Wirte a Java bean that  MyBatis can map with table column
 
-- Use `@Encryption` annotate on the field property which you need encryption and decryption，Here is a example to decrypt and encrypt `nickname`:
+- Use `@Encryption` annotate on the field property which you need encryption and decryption，Here is an example to decrypt and encrypt `nickname`:
 
 [API link](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/8500f7454d5ec150b5ece6549f4608b38183af19/mybatis-encrypt-spring-boot-tests/src/main/java/com/example/controller/MemberController.java#L112): http://localhost:8080/api/member/save/direct
 
