@@ -42,7 +42,7 @@ public class DefaultAesEncryptStrategyImpl implements EncryptStrategy {
     public String encrypt(Object plaintext) {
         Assert.notNull(plaintext, "Plaintext cannot be null");
         try {
-            SecretKey secretKey = new SecretKeySpec(aesProperties.getSecretKey().getBytes(StandardCharsets.UTF_8), KEY_ALGORITHM);
+            SecretKey secretKey = new SecretKeySpec(aesProperties.getKey().getBytes(StandardCharsets.UTF_8), KEY_ALGORITHM);
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
             @SuppressWarnings({"all"}) IvParameterSpec ivSpec = new IvParameterSpec(aesProperties.getKeyIv().getBytes(StandardCharsets.UTF_8));
             int blockSize = cipher.getBlockSize();
@@ -71,7 +71,7 @@ public class DefaultAesEncryptStrategyImpl implements EncryptStrategy {
         try {
             byte[] decodeFromBase64 = Base64.getDecoder().decode(String.valueOf(ciphertext));
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-            SecretKey secretKey = new SecretKeySpec(aesProperties.getSecretKey().getBytes(StandardCharsets.UTF_8), KEY_ALGORITHM);
+            SecretKey secretKey = new SecretKeySpec(aesProperties.getKey().getBytes(StandardCharsets.UTF_8), KEY_ALGORITHM);
             @SuppressWarnings({"all"}) IvParameterSpec ivSpec = new IvParameterSpec(aesProperties.getKeyIv().getBytes(StandardCharsets.UTF_8));
             cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
             byte[] originalBytes = cipher.doFinal(decodeFromBase64);

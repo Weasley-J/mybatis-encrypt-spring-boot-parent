@@ -7,7 +7,7 @@ class DefaultAesEncryptStrategyImplTest {
 
     static EncryptStrategy encryptStrategy = new DefaultAesEncryptStrategyImpl(
             new MybatisEncryptProperties.AesProperties()
-                    .setSecretKey("Jidkdp1mWL1tRyK=")
+                    .setKey("Jidkdp1mWL1tRyK=")
                     .setKeyIv("Jidkdp1mWL1jijK=")
     );
 

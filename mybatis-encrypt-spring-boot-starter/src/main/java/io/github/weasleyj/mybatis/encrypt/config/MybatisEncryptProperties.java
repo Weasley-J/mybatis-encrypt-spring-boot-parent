@@ -47,7 +47,7 @@ public class MybatisEncryptProperties {
         /**
          * The secret key for AES encrypt, the length must be 16.
          */
-        private String secretKey;
+        private String key;
         /**
          * The offset for secretKey, the length must be 16.
          */
@@ -60,11 +60,11 @@ public class MybatisEncryptProperties {
             return keyIv;
         }
 
-        public String getSecretKey() {
-            if (secretKey.length() != 16) {
-                throw new IllegalArgumentException("secret-key length must be 16: " + secretKey);
+        public String getKey() {
+            if (key.length() != 16) {
+                throw new IllegalArgumentException("secret-key length must be 16: " + key);
             }
-            return secretKey;
+            return key;
         }
     }
 

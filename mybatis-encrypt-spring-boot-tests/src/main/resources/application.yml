@@ -29,9 +29,10 @@ mybatis:
     enable: on
     encrypt-type: aes
     aes:
-      secret-key: Jidkdp1mWL1tRyK=
+      key: Jidkdp1mWL1tRyK=
       key-iv: Poikdp1mWL1jijK=
-    encrypt-strategy:
+    diy:
+      encrypt-strategy:
 
 # PageHelper分页插件
 pagehelper:
