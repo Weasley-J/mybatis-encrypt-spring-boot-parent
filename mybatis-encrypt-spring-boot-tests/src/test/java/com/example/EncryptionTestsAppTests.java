@@ -101,7 +101,7 @@ class EncryptionTestsAppTests {
     void testSelectByEncryptedFields() {
         DttMember member = new DttMember().setNickname("蒋震南1005");
         log.info("before {}", JacksonUtil.toJson(member));
-        DttMember dttMember = EncryptStrategy.covert(member, mybatisEncryptProperties.getEncryptType());
+        DttMember dttMember = EncryptStrategy.convert(member, mybatisEncryptProperties.getEncryptType());
         log.info("after {}", JacksonUtil.toJson(member));
         List<DttMember> members = this.memberService.list(Wrappers.lambdaQuery(DttMember.class)
                 .eq(DttMember::getNickname, dttMember.getNickname()));

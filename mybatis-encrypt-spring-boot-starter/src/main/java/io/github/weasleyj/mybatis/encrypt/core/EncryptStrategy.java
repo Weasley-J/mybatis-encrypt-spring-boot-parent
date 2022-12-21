@@ -26,7 +26,7 @@ public interface EncryptStrategy {
      * @param <E>       The type of raw bean
      * @return The bean with fields encrypt to ciphertext
      */
-    static <E> E covert(E plainBean, EncryptType encryptType) {
+    static <E> E convert(E plainBean, EncryptType encryptType) {
         Assert.notNull(plainBean, "Plain bean must be not null");
         Assert.notNull(encryptType, "Encrypt type must be not null");
         if (plainBean.getClass() == Object.class) return plainBean;

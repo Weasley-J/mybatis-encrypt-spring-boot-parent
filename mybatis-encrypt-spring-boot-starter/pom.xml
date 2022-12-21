@@ -11,7 +11,7 @@
 
     <groupId>io.github.weasley-j</groupId>
     <artifactId>mybatis-encrypt-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>mybatis-encrypt-spring-boot-starter</name>
     <description>A spring-boot starter to make it easy to encrypt and decrypt some column of database tables, supports for
         user custom encryption algorithms, you can even use some encrypted fields as query criteria.

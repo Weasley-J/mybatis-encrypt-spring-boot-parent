@@ -87,8 +87,8 @@ public class MemberController {
     @GetMapping("/lis/encrypted/fields")
     public ResponseEntity<List<DttMember>> selectByEncryptedFields(@ModelAttribute("member") DttMember member) {
         log.info("{}", JacksonUtil.toPrettyJson(member));
-        DttMember dttMember = EncryptStrategy.covert(member, mybatisEncryptProperties.getEncryptType());
-        log.info("EncryptStrategy.covert {}", JacksonUtil.toPrettyJson(dttMember));
+        DttMember dttMember = EncryptStrategy.convert(member, mybatisEncryptProperties.getEncryptType());
+        log.info("EncryptStrategy.convert {}", JacksonUtil.toPrettyJson(dttMember));
         List<DttMember> members = this.memberService.list(Wrappers.lambdaQuery(DttMember.class)
                 .eq(DttMember::getNickname, dttMember.getNickname()));
         return ResponseEntity.ok(members);
