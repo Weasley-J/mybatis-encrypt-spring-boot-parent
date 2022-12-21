@@ -412,3 +412,12 @@ Finally, you can get some results  like this:
   ]
 }
 ```
+
+
+
+# F & Q
+
+## 1 How can I use some encrypted fields as query criteria？
+
+- You can use this `API` `io.github.weasleyj.mybatis.encrypt.core.EncryptStrategy#covert` to convert your plain bean as cipher bean (Only converts the field annotated by annotation `io.github.weasleyj.mybatis.encrypt.annotation.Encryption`), Here is an Example
+
