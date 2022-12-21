@@ -2,7 +2,7 @@
 
 **A spring-boot starter to encrypt and decrypt some column of database**
 
-## [![Maven Central](https://img.shields.io/maven-central/v/io.github.weasley-j/mybatis-encrypt-spring-boot-parent)](https://search.maven.org/artifact/io.github.weasley-j/mybatis-encrypt-spring-boot-parent)
+## [![Maven Central](https://img.shields.io/maven-central/v/io.github.weasley-j/mybatis-encrypt-spring-boot-starter)](https://search.maven.org/artifact/io.github.weasley-j/mybatis-encrypt-spring-boot-starter)
 
 Tips: For running test application I recommend you to set the correct path that you can get a cleanning project directory.
 
