@@ -63,7 +63,7 @@ alphahub:
 
 ## 2 Configure your configuration yaml file
 
-[`MyBatis` encryption configuration](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/main/mybatis-encrypt-spring-boot-starter/src/main/java/io/github/weasleyj/mybatis/encrypt/config/MybatisEncryptProperties.java)，Embeded 2 algorithms.
+[`MyBatis` encryption configuration](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/main/mybatis-encrypt-spring-boot-starter/src/main/java/io/github/weasleyj/mybatis/encrypt/config/MybatisEncryptProperties.java)，2 algorithms embeded. you can choose one of them. Or you can implement you own algorithm.
 
 ### 2.1 Base64 algorithm
 
@@ -150,7 +150,7 @@ public class SomeApplication {
 
 ## 3 Wirte a Java bean that  MyBatis can map with table column
 
-- Use `@Encryption` annotate on the field property which you need encryption and decryption，Here is a example to decrypt and encrypt `nickname`:
+- Use `@Encryption` annotate on the field property which you need encryption and decryption，Here is an example to decrypt and encrypt `nickname`:
 
 [API link](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/8500f7454d5ec150b5ece6549f4608b38183af19/mybatis-encrypt-spring-boot-tests/src/main/java/com/example/controller/MemberController.java#L112): http://localhost:8080/api/member/save/direct
 
@@ -282,7 +282,7 @@ INSERT INTO dtt_member ( member_id, open_id, nickname, is_enable, balance, birth
 
 - When sql with type of  `	SELECT` Executed by `MyBatis` Executor, `nickname` will be decrypted, i.e:
 
-[API link](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/8500f7454d5ec150b5ece6549f4608b38183af19/mybatis-encrypt-spring-boot-tests/src/main/java/com/example/controller/MemberController.java#L53): http://localhost:8080/api/member/page/pagehelper?pageNum=1&pageSize=2
+[API link](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/8500f7454d5ec150b5ece6549f4608b38183af19/mybatis-encrypt-spring-boot-tests/src/main/java/com/example/controller/MemberController.java#L53): http://localhost:8080/api/member/page/pagehelper?pageNum=1&pageSize=10
 
 ```log
 JDBC Connection [HikariProxyConnection@670142194 wrapping conn1: url=jdbc:h2:/Users/weasley/Development/IdeaProjects/mybatis-encrypt-spring-boot-parent/mybatis-encrypt-spring-boot-tests/h2 user=] will not be managed by Spring

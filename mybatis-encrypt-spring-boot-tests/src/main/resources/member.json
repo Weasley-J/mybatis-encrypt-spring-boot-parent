@@ -1,0 +1,78 @@
+{
+  "pageNum": 1,
+  "pageSize": 10,
+  "total": 5,
+  "pages": 1,
+  "list": [
+    {
+      "memberId": 1,
+      "openId": "fawezOE5sT",
+      "nickname": "蒋震南",
+      "isEnable": true,
+      "balance": 865.0000,
+      "birthday": "2022-12-20 01:58:00",
+      "status": 0,
+      "deleted": 1,
+      "registrarDate": "2022-12-20",
+      "accelerateBeginTime": "01:58:01",
+      "accelerateEndTime": "01:58:01",
+      "updateTime": "2022-12-20 01:58:00"
+    },
+    {
+      "memberId": 2,
+      "openId": "fawezOE5sT",
+      "nickname": "蒋震南",
+      "isEnable": true,
+      "balance": 865.0000,
+      "birthday": "2022-12-20 02:00:03",
+      "status": 0,
+      "deleted": 1,
+      "registrarDate": "2022-12-20",
+      "accelerateBeginTime": "02:00:03",
+      "accelerateEndTime": "02:00:03",
+      "updateTime": "2022-12-20 02:00:03"
+    },
+    {
+      "memberId": 3,
+      "openId": "fawezOE5sT",
+      "nickname": "蒋震南",
+      "isEnable": true,
+      "balance": 865.0000,
+      "birthday": "2022-12-20 02:00:04",
+      "status": 0,
+      "deleted": 1,
+      "registrarDate": "2022-12-20",
+      "accelerateBeginTime": "02:00:04",
+      "accelerateEndTime": "02:00:04",
+      "updateTime": "2022-12-20 02:00:04"
+    },
+    {
+      "memberId": 4,
+      "openId": "fawezOE5sT",
+      "nickname": "蒋震南",
+      "isEnable": true,
+      "balance": 865.0000,
+      "birthday": "2022-12-20 02:00:04",
+      "status": 0,
+      "deleted": 1,
+      "registrarDate": "2022-12-20",
+      "accelerateBeginTime": "02:00:05",
+      "accelerateEndTime": "02:00:05",
+      "updateTime": "2022-12-20 02:00:04"
+    },
+    {
+      "memberId": 5,
+      "openId": "fawezOE5sT",
+      "nickname": "蒋震南",
+      "isEnable": true,
+      "balance": 865.0000,
+      "birthday": "2022-12-20 02:00:06",
+      "status": 0,
+      "deleted": 1,
+      "registrarDate": "2022-12-20",
+      "accelerateBeginTime": "02:00:06",
+      "accelerateEndTime": "02:00:06",
+      "updateTime": "2022-12-20 02:00:06"
+    }
+  ]
+}

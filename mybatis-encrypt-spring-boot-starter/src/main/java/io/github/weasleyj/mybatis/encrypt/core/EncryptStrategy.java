@@ -18,7 +18,7 @@ public interface EncryptStrategy {
     }
 
     /**
-     * To decrypt an encrypted test that human-unreadable
+     * To decrypt an encrypted text that human-unreadable
      *
      * @param ciphertext The encrypted text to decrypt
      * @return The decrypted text that human-readable
