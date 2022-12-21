@@ -7,6 +7,9 @@ import com.example.common.page.PageWrapper;
 import com.example.demain.DttMember;
 import com.example.service.MemberService;
 import com.fasterxml.jackson.core.type.TypeReference;
+import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptProperties;
+import io.github.weasleyj.mybatis.encrypt.core.EncryptStrategy;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
@@ -19,11 +22,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @SpringBootTest
 class EncryptionTestsAppTests {
 
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private MybatisEncryptProperties mybatisEncryptProperties;
 
     @Test
     void contextLoads() {
@@ -59,15 +65,6 @@ class EncryptionTestsAppTests {
     }
 
     @Test
-    void testSelectByEncryptFiled() {
-        List<DttMember> members = this.memberService.list(Wrappers.lambdaQuery(DttMember.class)
-                .eq(DttMember::getNickname, "蒋震南1005")
-                .eq(DttMember::getOpenId, "fawezOE5sT")
-        );
-        System.out.println(JacksonUtil.toPrettyJson(members));
-    }
-
-    @Test
     void testUpdateSingle() {
         DttMember member = JacksonUtil.readValue("{\n" +
                 "      \"memberId\": 3,\n" +
@@ -95,4 +92,20 @@ class EncryptionTestsAppTests {
         );
         Assert.isTrue(update2, "update must be success");
     }
+
+
+    /**
+     * Use an encrypted field to query for data
+     */
+    @Test
+    void testSelectByEncryptedFields() {
+        DttMember member = new DttMember().setNickname("蒋震南1005");
+        log.info("before {}", JacksonUtil.toJson(member));
+        DttMember dttMember = EncryptStrategy.covert(member, mybatisEncryptProperties.getEncryptType());
+        log.info("after {}", JacksonUtil.toJson(member));
+        List<DttMember> members = this.memberService.list(Wrappers.lambdaQuery(DttMember.class)
+                .eq(DttMember::getNickname, dttMember.getNickname()));
+        log.info("select by encrypt filed: {}", JacksonUtil.toJson(members));
+    }
+
 }

@@ -46,7 +46,7 @@ public class MybatisEncryptConfigurer implements InitializingBean {
     /**
      * The clients of encrypt strategies
      */
-    public static final Map<EncryptType, EncryptStrategy> STRATEGIES_CLIENTS = new ConcurrentHashMap<>(6);
+    public static final Map<EncryptType, EncryptStrategy> STRATEGY_CLIENTS = new ConcurrentHashMap<>(6);
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final DiyProperties diyProperties;
     private final AesProperties aesProperties;
@@ -63,7 +63,6 @@ public class MybatisEncryptConfigurer implements InitializingBean {
         this.defaultMybatisEncryptInterceptor = defaultMybatisEncryptInterceptor;
     }
 
-
     @Override
     public void afterPropertiesSet() throws Exception {
         sqlSessionFactories.forEach(sqlSessionFactory -> {
@@ -73,9 +72,9 @@ public class MybatisEncryptConfigurer implements InitializingBean {
             }
         });
         if (null != diyProperties.getEncryptStrategy()) {
-            STRATEGIES_CLIENTS.put(DIY, ClassUtils.newInstance(diyProperties.getEncryptStrategy()));
+            STRATEGY_CLIENTS.put(DIY, ClassUtils.newInstance(diyProperties.getEncryptStrategy()));
         }
-        STRATEGIES_CLIENTS.put(BASE64, new DefaultBase64EncryptStrategyImpl());
-        STRATEGIES_CLIENTS.put(AES, new DefaultAesEncryptStrategyImpl(aesProperties));
+        STRATEGY_CLIENTS.put(BASE64, new DefaultBase64EncryptStrategyImpl());
+        STRATEGY_CLIENTS.put(AES, new DefaultAesEncryptStrategyImpl(aesProperties));
     }
 }

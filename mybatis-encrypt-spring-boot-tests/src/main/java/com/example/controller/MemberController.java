@@ -10,6 +10,8 @@ import com.example.common.page.PageWrapper;
 import com.example.demain.DttMember;
 import com.example.service.MemberService;
 import com.github.pagehelper.page.PageMethod;
+import io.github.weasleyj.mybatis.encrypt.config.MybatisEncryptProperties;
+import io.github.weasleyj.mybatis.encrypt.core.EncryptStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,8 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private MybatisEncryptProperties mybatisEncryptProperties;
 
     /**
      * 用户信息分页查询(Pagehelper写法)
@@ -75,6 +79,19 @@ public class MemberController {
         params.setCurrent(pageParam.getCurrent());
         Page<DttMember> page = memberService.page(params, Wrappers.lambdaQuery(member));
         return ResponseEntity.ok(page);
+    }
+
+    /**
+     * Use encrypted fields as query criteria
+     */
+    @GetMapping("/lis/encrypted/fields")
+    public ResponseEntity<List<DttMember>> selectByEncryptedFields(@ModelAttribute("member") DttMember member) {
+        log.info("{}", JacksonUtil.toPrettyJson(member));
+        DttMember dttMember = EncryptStrategy.covert(member, mybatisEncryptProperties.getEncryptType());
+        log.info("EncryptStrategy.covert {}", JacksonUtil.toPrettyJson(dttMember));
+        List<DttMember> members = this.memberService.list(Wrappers.lambdaQuery(DttMember.class)
+                .eq(DttMember::getNickname, dttMember.getNickname()));
+        return ResponseEntity.ok(members);
     }
 
     /**

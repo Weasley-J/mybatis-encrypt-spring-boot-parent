@@ -13,7 +13,9 @@
     <artifactId>mybatis-encrypt-spring-boot-starter</artifactId>
     <version>1.0.0</version>
     <name>mybatis-encrypt-spring-boot-starter</name>
-    <description>A spring-boot starter make it easy to encrypt and decrypt some column of database tables, support for user custom encryption algorithms</description>
+    <description>A spring-boot starter make it easy to encrypt and decrypt some column of database tables, support for
+        user custom encryption algorithms
+    </description>
     <url>https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent</url>
 
     <licenses>

@@ -143,7 +143,7 @@ public class DefaultMybatisEncryptInterceptor implements Interceptor {
      * @return The instance of {@link EncryptStrategy}
      */
     public EncryptStrategy deduceEncryptStrategy() {
-        return MybatisEncryptConfigurer.STRATEGIES_CLIENTS.get(mybatisEncryptProperties.getEncryptType());
+        return MybatisEncryptConfigurer.STRATEGY_CLIENTS.get(mybatisEncryptProperties.getEncryptType());
     }
 
 }
