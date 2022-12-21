@@ -55,7 +55,7 @@ alphahub:
 <dependency>
     <groupId>io.github.weasley-j</groupId>
     <artifactId>mybatis-encrypt-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -419,5 +419,5 @@ Finally, you can get some results  like this:
 
 ## 1 How can I use some encrypted fields as query criteria？
 
-- You can use this `API` `io.github.weasleyj.mybatis.encrypt.core.EncryptStrategy#covert` to convert your plain bean as cipher bean (Only converts the field annotated by annotation `io.github.weasleyj.mybatis.encrypt.annotation.Encryption`), Here is an Example
+- You can use this `API` [`EncryptStrategy#covert`](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/c779072994a064f6663966b79022bb0f684841fa/mybatis-encrypt-spring-boot-starter/src/main/java/io/github/weasleyj/mybatis/encrypt/core/EncryptStrategy.java#L29) to convert your plain bean as a cipher bean (Only converts the field annotated by annotation [`@Encryption`](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/8500f7454d5ec150b5ece6549f4608b38183af19/mybatis-encrypt-spring-boot-starter/src/main/java/io/github/weasleyj/mybatis/encrypt/annotation/Encryption.java#L20)), [Here is an Example that you can reference](https://github.com/Weasley-J/mybatis-encrypt-spring-boot-parent/blob/c779072994a064f6663966b79022bb0f684841fa/mybatis-encrypt-spring-boot-tests/src/test/java/com/example/EncryptionTestsAppTests.java#L101).
 
