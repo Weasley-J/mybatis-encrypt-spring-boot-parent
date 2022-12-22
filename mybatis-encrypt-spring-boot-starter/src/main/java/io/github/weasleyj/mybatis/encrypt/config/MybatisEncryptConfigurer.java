@@ -56,7 +56,10 @@ public class MybatisEncryptConfigurer implements InitializingBean {
     private final List<SqlSessionFactory> sqlSessionFactories;
     private final DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor;
 
-    public MybatisEncryptConfigurer(DiyProperties diyProperties, AesProperties aesProperties, List<SqlSessionFactory> sqlSessionFactories, DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor) {
+    public MybatisEncryptConfigurer(DiyProperties diyProperties,
+                                    AesProperties aesProperties,
+                                    List<SqlSessionFactory> sqlSessionFactories,
+                                    DefaultMybatisEncryptInterceptor defaultMybatisEncryptInterceptor) {
         this.diyProperties = diyProperties;
         this.aesProperties = aesProperties;
         this.sqlSessionFactories = sqlSessionFactories;
